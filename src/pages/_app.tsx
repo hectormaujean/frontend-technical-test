@@ -1,12 +1,22 @@
-import type { AppProps } from 'next/app'
-import { getLoggedUserId } from '../utils/getLoggedUserId'
-import '../styles/globals.css'
+import type { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-// Default way to get a logged user
-export const loggedUserId = getLoggedUserId()
+import { LoggedUserContext } from "../modules/contexts";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import { getLoggedUserId } from "../utils/getLoggedUserId";
+
+import "../styles/globals.css";
+
+const queryClient = new QueryClient();
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <LoggedUserContext.Provider value={getLoggedUserId()}>
+        <Component {...pageProps} />
+      </LoggedUserContext.Provider>
+    </QueryClientProvider>
+  );
 }
 
-export default MyApp
+export default App;
