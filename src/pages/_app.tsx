@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import "moment/locale/fr";
 import moment from "moment";
 
-import { LoggedUserContext } from "../modules/contexts";
+import { UserIdContext } from "../modules/contexts";
 
 import { getLoggedUserId } from "../utils/getLoggedUserId";
 
@@ -17,9 +17,9 @@ moment.locale("fr");
 function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <LoggedUserContext.Provider value={getLoggedUserId()}>
+      <UserIdContext.Provider value={getLoggedUserId()}>
         <Component {...pageProps} />
-      </LoggedUserContext.Provider>
+      </UserIdContext.Provider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

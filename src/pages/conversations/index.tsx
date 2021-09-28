@@ -2,16 +2,16 @@ import { useContext } from "react";
 
 import Link from "next/link";
 
-import { LoggedUserContext } from "../../modules/contexts";
+import { UserIdContext } from "../../modules/contexts";
 import { useGetUserConversations } from "../../modules/conversations/queries";
 
 import ConversationThumbnail from "../../components/conversation/Thumbnail";
 import { List } from "@mui/material";
 
 const Conversations = () => {
-  const userId = useContext(LoggedUserContext);
+  const userId = useContext(UserIdContext);
 
-  const { data, isLoading, error } = useGetUserConversations(userId);
+  const { data, isLoading } = useGetUserConversations(userId);
 
   return (
     <div>

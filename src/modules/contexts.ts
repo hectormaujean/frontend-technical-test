@@ -1,3 +1,3 @@
 import { createContext } from "react";
 
-export const LoggedUserContext = createContext<number>(undefined);
+export const UserIdContext = createContext<number>(undefined);
