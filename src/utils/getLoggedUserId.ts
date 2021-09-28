@@ -1,4 +1,5 @@
-import type { User } from '../types/user'
+import { User } from "../modules/users/types";
+
 
 // Default way to use a logged user
 // Feel free to update the user ID for your tests
