@@ -1,19 +1,24 @@
 import { List } from "@mui/material";
-import { useContext } from "react";
-import { UserIdContext } from "../../modules/contexts";
+
 import { Message } from "../../modules/messages/types";
+
+import MessageBubble from "./Bubble";
 
 type Props = {
   messages: Message[];
 };
 
 const MessageList = ({ messages }: Props) => {
-  const userId = useContext(UserIdContext);
-
   return (
     <List>
-      {messages.map((message) => (
-        <div key={message.id}>{message.body}</div>
+      {messages.map(({ id, body, authorId }, i) => (
+        <MessageBubble
+          key={id}
+          body={body}
+          authorId={authorId}
+          previousMessageAuthor={messages[i - 1]?.authorId}
+          nextMessageAuthor={messages[i + 1]?.authorId}
+        />
       ))}
     </List>
   );
