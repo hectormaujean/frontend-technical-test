@@ -1,4 +1,5 @@
 import { List } from "@mui/material";
+import { useEffect, useRef } from "react";
 
 import { Message } from "../../modules/messages/types";
 
@@ -9,6 +10,14 @@ type Props = {
 };
 
 const MessageList = ({ messages }: Props) => {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView();
+    }
+  }, [messages]);
+
   return (
     <List>
       {messages.map(({ id, body, authorId }, i) => (
@@ -18,6 +27,7 @@ const MessageList = ({ messages }: Props) => {
           authorId={authorId}
           previousMessageAuthor={messages[i - 1]?.authorId}
           nextMessageAuthor={messages[i + 1]?.authorId}
+          scrollRef={i === messages.length - 1 ? scrollRef : undefined}
         />
       ))}
     </List>

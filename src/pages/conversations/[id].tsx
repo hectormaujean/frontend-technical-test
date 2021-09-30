@@ -4,12 +4,13 @@ import { Skeleton } from "@mui/material";
 import { Box } from "@mui/system";
 import { CircularProgress } from "@mui/material";
 
-import { UserIdContext } from "../../modules/contexts";
+import { ConversationIdContext, UserIdContext } from "../../modules/contexts";
 import { useGetUserConversations } from "../../modules/conversations/queries";
 import { useGetConversationMessages } from "../../modules/messages/queries";
 
 import ConversationHeader from "../../components/conversation/Header";
 import MessageList from "../../components/message/List";
+import MessageInput from "../../components/message/Input";
 
 type Props = {
   id: string;
@@ -29,23 +30,25 @@ const Conversation = ({ id }: Props) => {
   );
 
   return (
-    <Box display="flex" flexDirection="column" minHeight="100vh">
-      {isConversationDataLoading ? (
-        <Skeleton variant="rectangular" height={70} />
-      ) : (
-        <ConversationHeader conversation={currentConversation} />
-      )}
-      <Box flexGrow={1}>
-        {areMessagesLoading ? (
-          <Box display="flex" justifyContent="center" marginTop={5}>
-            <CircularProgress />
-          </Box>
+    <ConversationIdContext.Provider value={parseInt(id)}>
+      <Box display="flex" flexDirection="column" height="100vh">
+        {isConversationDataLoading ? (
+          <Skeleton variant="rectangular" height={70} />
         ) : (
-          <MessageList messages={messagesData} />
+          <ConversationHeader conversation={currentConversation} />
         )}
+        <Box flex="1 1 auto" overflow="scroll">
+          {areMessagesLoading ? (
+            <Box display="flex" justifyContent="center" marginTop={5}>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <MessageList messages={messagesData} />
+          )}
+        </Box>
+        <MessageInput />
       </Box>
-      <div>MessageInput</div>
-    </Box>
+    </ConversationIdContext.Provider>
   );
 };
 
