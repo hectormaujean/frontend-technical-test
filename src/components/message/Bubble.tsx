@@ -35,7 +35,7 @@ const MessageBubble = ({
       )}
       ref={scrollRef}
     >
-      <Box whiteSpace="pre">{body}</Box>
+      {body}
     </ListItem>
   );
 };

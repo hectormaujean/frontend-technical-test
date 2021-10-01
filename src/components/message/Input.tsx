@@ -52,6 +52,7 @@ const MessageInput = () => {
         multiline
         maxRows={3}
         onKeyDown={handleKeyboardSubmit}
+        placeholder="Écrire un message"
       />
       <SendIcon
         sx={{ cursor: message ? "pointer" : "auto" }}

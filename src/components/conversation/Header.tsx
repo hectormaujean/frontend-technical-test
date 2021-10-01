@@ -40,7 +40,7 @@ const ConversationHeader = ({
       boxShadow="0 0 4px rgba(0, 0, 0, 0.2)"
     >
       <Box display="flex" alignItems="center">
-        <Link href="/conversations" passHref={true}>
+        <Link href="/conversations" passHref>
           <ArrowBackIosIcon sx={{ color: grey[600], cursor: "pointer" }} />
         </Link>
         <Avatar sx={{ marginRight: 1 }} />

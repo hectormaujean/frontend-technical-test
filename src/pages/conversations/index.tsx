@@ -1,12 +1,12 @@
 import { useContext } from "react";
 
-import Link from "next/link";
+import { Box } from "@mui/system";
+import { List, Typography } from "@mui/material";
 
 import { UserIdContext } from "../../modules/contexts";
 import { useGetUserConversations } from "../../modules/conversations/queries";
 
 import ConversationThumbnail from "../../components/conversation/Thumbnail";
-import { List } from "@mui/material";
 
 const Conversations = () => {
   const userId = useContext(UserIdContext);
@@ -14,13 +14,12 @@ const Conversations = () => {
   const { data, isLoading } = useGetUserConversations(userId);
 
   return (
-    <div>
-      <Link href="/">Go home</Link>
-      <div>User conversations</div>
+    <Box sx={{ margin: 3 }}>
+      <Typography variant="h5">Conversations</Typography>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <List sx={{ margin: 3 }}>
+        <List sx={{ marginTop: 2 }}>
           {data.map((conversation) => (
             <ConversationThumbnail
               key={conversation.id}
@@ -29,7 +28,7 @@ const Conversations = () => {
           ))}
         </List>
       )}
-    </div>
+    </Box>
   );
 };
 

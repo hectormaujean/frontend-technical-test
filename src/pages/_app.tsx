@@ -9,6 +9,7 @@ import { UserIdContext } from "../modules/contexts";
 import { getLoggedUserId } from "../utils/getLoggedUserId";
 
 import "../styles/globals.css";
+import { Box } from "@mui/system";
 
 const queryClient = new QueryClient();
 

@@ -44,7 +44,7 @@ const ConversationThumbnail = ({
   const humanizedTimestamp = humanizeTimestamp(lastMessageTimestamp);
 
   return (
-    <Link href={`/conversations/${id}`} passHref={true}>
+    <Link href={`/conversations/${id}`} passHref>
       <Paper
         elevation={2}
         sx={{
